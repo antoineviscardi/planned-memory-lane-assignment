@@ -1,28 +1,82 @@
 # Planned coding challenge: Memory lane
 
-**Please avoid initiating pull requests on this repository or forking this repository. To submit your solution, either set up a repository on your own account or forward a zip file to the appropriate contact within our talent team.**
+## TODO
 
-### Problem definition
+- Delete memory
+- Code cleanup
+  - extract URL for network requests and social buttons
+  - cleanup src/ folder
+  - extract fetch util
 
-After a series of discovery calls we found out a problem that our users are facing. They are having a hard time sharing their memories with friends and family. They are using a combination of social media, messaging apps, and email to share their memories. They are looking for a solution that allows them to store and share their memories in a single place.
+### Improve server reliability
 
-As a first iteration for this solution, we want to build a web application that allows users to create a memory lane and share it with friends and family. A memory lane is a collection of events that happened in a chronological order. Each event consists of a title, a description, a timestamp, and at least one image.
+Currently, the server is really bare bone. If an error is encountered it
+crashes. There
 
-## Deliverables
+- Show error message on error
 
-- Clone this repository and create a new branch with your name. Open a pull request on your own instance of the repository.
-- An updated README providing a high level explanation of your implementation.
-- **Screenshots or a short video/gif** showing your UI implementation.
-- Update the API to accommodate for your technical design. Run the API by using `npm run serve:api`.
-- The provided mockup is only for reference and inspiration. Feel free to improve it!
+## Architecture decision records
 
-### FAQ
+### ADR 1: Use Zustand for state management
 
-- **Can I add a framework like Next?** If you have the time, go for it, we want to see you use your favorite tools.
-- **Is user authentication required?** No, it is not required.
-- **Can I use a component library?** Yes, you can use a component library.
-- **What will you be looking for?** Good user experience, reusable code, and a well thought out technical design.
+I will be using [Zustand](https://zustand-demo.pmnd.rs/) as a lightweight state
+management tool. I don't think a state management solution is strictly necessary
+here given the simplicity of the app. However, I've been wanting to try it for
+some time and I think this is a good opportunity to do so.
 
-### Inspiration mockup
+### ADR 2: Do optimistic updates
 
-![Memory lane mockup](./memory_lane.png)
+In order to provide the best possible user experience, I will do optimist
+updates. This will eliminate perceived latency.
+
+### ADR 3: Use Zod to define data structures
+
+Zod will allow me to write more descriptive and explicit data structures. It
+will also give me string typing and validation logic out of the box. I will be
+able to write more defensive and robust code.
+
+### ADR 4: Store images as BLOBs directly in SQlite
+
+This is definitely the simplest solution to implement. I will have something
+fully functional much faster than if I have to figure out and setup cloud
+storage. However, this won't necessarily scale well and should be changed before
+usage grows too much.
+
+### ADR 5: Segregate data access and controller logic
+
+Currently, the API controllers contain all backend logic. This makes it hard to
+reason about making maintenance difficult. I will extract all data access logic
+as to establish a clear separation of concern. The controllers will only do data
+validation, network-related work. Eventually it would also be responsible for
+authentication and authorization logic.
+
+## Possible improvements
+
+### Pagination or virtualized list
+
+If we expect users to have a large number of memories, we should consider
+implementing a pagination strategy. We could also consider virtualizing the list
+depending on performance requirements or if we wanted infinite scrolling.
+
+### Tune social media share buttons
+
+For now, the share button allows users to copy a link or share to facebook. The
+UX could be improved by adding share buttons for other platforms our users are
+most likely to use.
+
+### User authentication and authorization
+
+The share button generates a link to a page that does not allow the recipient to
+edit the memory lane. Ideally we would want to secure memory-lane editing by
+implementing proper authentication and authorization strategies.
+
+### Better form validation and UX
+
+Currently, the form is using the default browser validation mechanism. Although
+this works, we could provide a better UX by implementing custom validation with
+better messages and visual cues on invalid data.
+
+### Images carousel
+
+Allowing users to view a memory's images in a full-screen carousel would make
+for a better UX.
