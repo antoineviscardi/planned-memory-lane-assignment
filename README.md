@@ -53,7 +53,9 @@ responsible for authentication and authorization logic.
 
 ## Demo
 
-![Demo](./docs/memory-lane-demo.mp4)
+https://github.com/user-attachments/assets/d27267db-e2b2-4e7a-89a1-997d3786df82
+
+
 
 ## Possible improvements
 
