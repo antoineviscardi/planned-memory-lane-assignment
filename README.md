@@ -1,19 +1,14 @@
 # Planned coding challenge: Memory lane
 
-## TODO
+## High level implementation
 
-- Delete memory
-- Code cleanup
-  - extract URL for network requests and social buttons
-  - cleanup src/ folder
-  - extract fetch util
+I did not change the basic structure of the starter template. I documented any
+architecturally significant decision in (very) brief records in the following
+section.
 
-### Improve server reliability
-
-Currently, the server is really bare bone. If an error is encountered it
-crashes. There
-
-- Show error message on error
+For UI, I created something very similar to the provided mockup insofar as it
+made sense given the requirements. The main difference is support for multiple
+images which required changing the card layout a little.
 
 ## Architecture decision records
 
@@ -24,15 +19,21 @@ management tool. I don't think a state management solution is strictly necessary
 here given the simplicity of the app. However, I've been wanting to try it for
 some time and I think this is a good opportunity to do so.
 
+Given the simplicity of the application, I will centralize all use-case-relevant
+state into a single store. This will make it easy to cover important logic with
+tests. By establishing a boundary between state and UI, the later will be more
+flexible making it easier to iterate on the component structure.
+
 ### ADR 2: Do optimistic updates
 
 In order to provide the best possible user experience, I will do optimist
-updates. This will eliminate perceived latency.
+updates. This will eliminate perceived latency. For now, if an error occurs, I
+will simply refresh the page so the app can recover to its latest valid state.
 
 ### ADR 3: Use Zod to define data structures
 
 Zod will allow me to write more descriptive and explicit data structures. It
-will also give me string typing and validation logic out of the box. I will be
+will also give me strong typing and validation logic out of the box. I will be
 able to write more defensive and robust code.
 
 ### ADR 4: Store images as BLOBs directly in SQlite
@@ -44,11 +45,13 @@ usage grows too much.
 
 ### ADR 5: Segregate data access and controller logic
 
-Currently, the API controllers contain all backend logic. This makes it hard to
-reason about making maintenance difficult. I will extract all data access logic
-as to establish a clear separation of concern. The controllers will only do data
-validation, network-related work. Eventually it would also be responsible for
-authentication and authorization logic.
+Currently, the API controllers contains all backend logic. This makes it hard to
+reason about and makes maintenance difficult. I will extract all data access
+logic as to establish a clear separation of concern. The controllers will only
+do data validation and network-related work. Eventually it would also be
+responsible for authentication and authorization logic.
+
+## Demo
 
 ## Possible improvements
 
@@ -58,7 +61,7 @@ If we expect users to have a large number of memories, we should consider
 implementing a pagination strategy. We could also consider virtualizing the list
 depending on performance requirements or if we wanted infinite scrolling.
 
-### Tune social media share buttons
+### Tune sharing feature
 
 For now, the share button allows users to copy a link or share to facebook. The
 UX could be improved by adding share buttons for other platforms our users are
