@@ -48,7 +48,7 @@ function App() {
   } else {
     return (
       <UiStateContext.Provider value={uiStateStore.current}>
-        <MemoryLanePage></MemoryLanePage>;
+        <MemoryLanePage></MemoryLanePage>
       </UiStateContext.Provider>
     );
   }

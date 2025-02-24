@@ -38,7 +38,7 @@ export default function MemoryLaneForm() {
           placeholder="No description..."
         ></textarea>
 
-        <div className="absolute bottom-0 left-0 w-full flex justify-end gap-4 p-4">
+        <div className="absolute bottom-0 right-0 flex justify-end gap-4 p-4">
           <button
             type="button"
             onClick={cancelEditDescription}

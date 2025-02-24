@@ -53,6 +53,8 @@ responsible for authentication and authorization logic.
 
 ## Demo
 
+![Demo](./docs/memory-lane-demo.mp4)
+
 ## Possible improvements
 
 ### Pagination or virtualized list
@@ -83,3 +85,9 @@ better messages and visual cues on invalid data.
 
 Allowing users to view a memory's images in a full-screen carousel would make
 for a better UX.
+
+### UI transitions
+
+To offer a smoother and more polished experience, UI transition could be
+implemented when different elements are mounted, unmounted or changed on the
+screen.
