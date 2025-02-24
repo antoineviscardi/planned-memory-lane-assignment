@@ -2,7 +2,7 @@
 
 ## High level implementation
 
-I did not change the basic structure of the starter template. I documented any
+I did not change the basic structure of the starter template. I documented every
 architecturally significant decision in (very) brief records in the following
 section.
 
@@ -20,15 +20,16 @@ here given the simplicity of the app. However, I've been wanting to try it for
 some time and I think this is a good opportunity to do so.
 
 Given the simplicity of the application, I will centralize all use-case-relevant
-state into a single store. This will make it easy to cover important logic with
-tests. By establishing a boundary between state and UI, the later will be more
-flexible making it easier to iterate on the component structure.
+state into a single store. This approach will make it easy to cover important
+logic with tests. By establishing a boundary between state and UI, the later
+will be more flexible making it easier to iterate on the component structure.
 
 ### ADR 2: Do optimistic updates
 
-In order to provide the best possible user experience, I will do optimist
+In order to provide the best possible user experience, I will do optimistic
 updates. This will eliminate perceived latency. For now, if an error occurs, I
-will simply refresh the page so the app can recover to its latest valid state.
+will simply refresh the page, allowing the app to recover to its latest valid
+state.
 
 ### ADR 3: Use Zod to define data structures
 
@@ -45,17 +46,15 @@ usage grows too much.
 
 ### ADR 5: Segregate data access and controller logic
 
-Currently, the API controllers contains all backend logic. This makes it hard to
+Currently, the API controllers contain all backend logic. This makes it hard to
 reason about and makes maintenance difficult. I will extract all data access
-logic as to establish a clear separation of concern. The controllers will only
-do data validation and network-related work. Eventually it would also be
-responsible for authentication and authorization logic.
+logic to establish a clear separation of concern. The controllers will be
+responsible solely for data validation and network-related logic. Eventually, it
+would also be responsible for authentication and authorization logic.
 
 ## Demo
 
-https://github.com/user-attachments/assets/d27267db-e2b2-4e7a-89a1-997d3786df82
-
-
+<https://github.com/user-attachments/assets/d27267db-e2b2-4e7a-89a1-997d3786df82>
 
 ## Possible improvements
 
@@ -73,9 +72,9 @@ most likely to use.
 
 ### User authentication and authorization
 
-The share button generates a link to a page that does not allow the recipient to
-edit the memory lane. Ideally we would want to secure memory-lane editing by
-implementing proper authentication and authorization strategies.
+The share button generates a link that does allows the recipient to edit the
+memory lane. Ideally we would want to secure memory-lane editing by implementing
+proper authentication and authorization strategies.
 
 ### Better form validation and UX
 
@@ -90,6 +89,6 @@ for a better UX.
 
 ### UI transitions
 
-To offer a smoother and more polished experience, UI transition could be
+To offer a smoother and more polished experience, UI transitions could be
 implemented when different elements are mounted, unmounted or changed on the
 screen.
