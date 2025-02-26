@@ -1,5 +1,6 @@
 {
   "name": "planned-memory-lane",
+  "type": "module",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -7,28 +8,38 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "serve:api": "nodemon api.js"
+    "serve:api": "tsx watch api.ts"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
+    "cors": "^2.8.5",
+    "dayjs": "^1.11.13",
+    "dotenv": "^16.4.7",
     "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "nanoid": "^5.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sqlite3": "^5.1.6"
+    "sqlite3": "^5.1.6",
+    "zod": "^3.24.2",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.8",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.0.3",
-    "autoprefixer": "^10.4.15",
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "nodemon": "^3.0.1",
     "postcss": "^8.4.28",
-    "tailwindcss": "^3.3.3",
+    "prettier": "3.5.1",
+    "tailwindcss": "^4.0.8",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   }
